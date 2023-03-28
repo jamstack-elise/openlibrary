@@ -75,7 +75,7 @@ class RegisterForm(Form):
     INPUTS = [
         Textbox(
             'email',
-            description=_('Your email address'),
+            description=_('Email Address'),
             klass='required',
             id='emailAddr',
             validators=[
@@ -88,27 +88,33 @@ class RegisterForm(Form):
         Textbox(
             'username',
             description=_(
-                "Choose a screen name. Screen names are public and cannot be changed later."
+                "Screen Name"
             ),
             klass='required',
-            help=_("Letters and numbers only please, and at least 3 characters."),
+            help=_("3+ characters; letters and numbers only; permanent."),
             autocapitalize="off",
             validators=[vlogin, username_validator],
         ),
         Password(
             'password',
-            description=_('Choose a password'),
+            description=_('Choose a Password'),
             klass='required',
             validators=[vpass],
         ),
         Password(
             'password2',
-            description=_('Confirm password'),
+            description=_('Confirm Password'),
             klass='required',
             validators=[
                 vpass,
                 EqualToValidator('password', _("Passwords didn't match.")),
             ],
+        ),
+        Checkbox(
+            'ia_events',
+            description=_(
+                """Event notices Invitations to and news about our virtual or local events."""
+            ),
         ),
         Checkbox(
             'ia_newsletter',
